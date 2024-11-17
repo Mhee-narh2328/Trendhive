@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import users.utils.DBConnection;
 
 import java.io.IOException;
@@ -34,9 +35,12 @@ public class LoginAdminServlet extends HttpServlet {
             stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
-            PrintWriter out = response.getWriter();
 
             if (rs.next()) {
+                String role = rs.getString("role");
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("role", role); // Set admin role to session
                 response.sendRedirect("/");
 //                out.println("Login successful! Welcome, " + username);
             } else {

@@ -79,17 +79,25 @@ public class ProductDAO {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "UPDATE Products SET productName = ?, productDescription = ?, productPrice = ?, productQuantity = ?, imageUrl = ? WHERE productId = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, product.getProductName());
-            stmt.setString(2, product.getProductDescription());
-            stmt.setBigDecimal(3, product.getProductPrice());
-            stmt.setInt(4, product.getProductQuantity());
-            stmt.setString(5, product.getImageUrl());
-            stmt.setInt(6, product.getProductId());
-            stmt.executeUpdate();
+
+            stmt.setString(1, product.getProductName()); // Set product name
+            stmt.setString(2, product.getProductDescription()); // Set product description
+            stmt.setBigDecimal(3, product.getProductPrice()); // Set product price (BigDecimal)
+            stmt.setInt(4, product.getProductQuantity()); // Set product quantity (int)
+            stmt.setString(5, product.getImageUrl()); // Set image URL
+            stmt.setInt(6, product.getProductId()); // Set product ID for WHERE clause
+
+            // Execute update and check how many rows were affected
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+            if (rowsAffected == 0) {
+                System.out.println("No product found with ID: " + product.getProductId());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public static void deleteProduct(int id) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

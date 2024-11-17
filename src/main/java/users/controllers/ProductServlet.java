@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import users.models.Product;
 
 import java.io.IOException;
@@ -49,9 +50,7 @@ public class ProductServlet extends HttpServlet {
 
         // Pass the product list to JSP
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/static/jsp/product.jsp").forward(request, response);
-
-//        request.getRequestDispatcher("/static/jsp/product.jsp").forward(request, response);
+        request.getRequestDispatcher("/static/jsp/products.jsp").forward(request, response);
     }
 }
 
