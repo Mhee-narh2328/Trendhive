@@ -27,7 +27,7 @@
     <input type="number" name="productQuantity" id="productQuantity" value="${product.productQuantity}" required><br>
 
     <label for="imageUrl">Image URL:</label>
-    <input type="file" name="image" /><br>
+    <input type="file" name="image" id="imageUrl" /><br>
 
     <button type="submit">Update Product</button>
 </form>

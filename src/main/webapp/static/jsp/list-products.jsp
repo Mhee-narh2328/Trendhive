@@ -40,7 +40,7 @@
     </tbody>
 <%--    <a href="/admin/products?action=add">Add New Product</a>--%>
 
-    <a href="/admin/create-product">Create New Account</a>
+    <a href="/admin/create-product">Create New Product</a>
   </table>
 
   </body>

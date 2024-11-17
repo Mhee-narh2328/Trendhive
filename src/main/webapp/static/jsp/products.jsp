@@ -15,7 +15,8 @@
     }
     .product img {
       width: 100%;
-      height: auto;
+      height: 250px;
+      object-fit: cover;
     }
     .product h3 {
       margin: 10px 0;
@@ -28,9 +29,6 @@
 <c:forEach var="product" items="${products}">
   <div class="product">
     <img src="product-image?productId=${product.productId}" alt="${product.productName}" />
-
-<%--    <img src="<c:url value='${product.imageUrl}'/>" alt="${product.productName}" width="100" />--%>
-<%--    <img src="${product.imageUrl}" alt="${product.productName}">--%>
     <h3>${product.productName}</h3>
     <p>${product.productDescription}</p>
     <p><strong>$${product.productPrice}</strong></p>
