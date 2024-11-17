@@ -22,6 +22,20 @@ public class Cart {
         }
         items.add(new CartItem(product, quantity));
     }
+    public void removeItem(int productId) {
+        // Iterate through the list of cart items and remove the item with the given productId
+        items.removeIf(item -> item.getProduct().getProductId() == productId);
+    }
+
+    public void updateItemQuantity(int productId, int newQuantity) {
+        for (CartItem item : items) {
+            if (item.getProduct().getProductId() == productId) {
+                item.setQuantity(newQuantity);
+                break;
+            }
+        }
+    }
+
 
     public BigDecimal getTotalPrice() {
         BigDecimal total = BigDecimal.ZERO;
