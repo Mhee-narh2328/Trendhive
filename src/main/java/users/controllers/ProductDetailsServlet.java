@@ -22,6 +22,14 @@ public class ProductDetailsServlet extends HttpServlet {
         String productIdParam = request.getParameter("productId");
         Product product = null;
 
+        String username = (String) request.getSession().getAttribute("username");
+        String role = (String) request.getSession().getAttribute("role");
+
+        if (username == null || role == null || !role.equals("USER")) {
+            response.sendRedirect("/login"); // Or redirect to a forbidden page
+            return; // Stop further processing
+        }
+
         try {
             // Validate and parse productId
             if (productIdParam == null || productIdParam.isEmpty()) {

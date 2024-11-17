@@ -18,6 +18,13 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Product> products = new ArrayList<>();
+        String username = (String) request.getSession().getAttribute("username");
+        String role = (String) request.getSession().getAttribute("role");
+
+        if (username == null || role == null || !role.equals("USER")) {
+            response.sendRedirect("/login"); // Or redirect to a forbidden page
+            return; // Stop further processing
+        }
 
         try {
             // Load the database driver
