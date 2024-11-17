@@ -7,7 +7,7 @@ public class Product {
     private String productName;
     private String productDescription;
     private BigDecimal productPrice;
-    private String imageUrl;
+    private byte[] imageUrl;
     private int productQuantity;
 
     //Default constructor
@@ -16,7 +16,8 @@ public class Product {
 
     // Parameterized Constructor
 
-    public Product(int productId, String productName, String productDescription, BigDecimal productPrice, String imageUrl, int productQuantity) {
+
+    public Product(int productId, String productName, String productDescription, BigDecimal productPrice, byte[] imageUrl, int productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -26,7 +27,7 @@ public class Product {
     }
 
     // Constructor without ID for adding new product
-    public Product(String productName, String productDescription, BigDecimal productPrice, int productQuantity, String imageUrl) {
+    public Product(String productName, String productDescription, BigDecimal productPrice, int productQuantity, byte[] imageUrl) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -71,11 +72,11 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public String getImageUrl() {
+    public byte[] getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(byte[] imageUrl) {
         this.imageUrl = imageUrl;
     }
 

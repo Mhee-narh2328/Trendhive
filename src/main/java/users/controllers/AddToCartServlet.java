@@ -66,7 +66,7 @@ public class AddToCartServlet extends HttpServlet {
                 product.setProductName(rs.getString("productName"));
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setProductPrice(rs.getBigDecimal("productPrice"));
-                product.setImageUrl(rs.getString("imageUrl"));
+                product.setImageUrl(rs.getBytes("imageUrl"));
                 product.setProductQuantity(rs.getInt("productQuantity"));
             }
 

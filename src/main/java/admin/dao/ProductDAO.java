@@ -2,6 +2,8 @@ package admin.dao;
 
 import users.models.Product;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,7 +30,7 @@ public class ProductDAO {
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setProductPrice(rs.getBigDecimal("productPrice"));
                 product.setProductQuantity(rs.getInt("productQuantity"));
-                product.setImageUrl(rs.getString("imageUrl"));
+                product.setImageUrl(rs.getBytes("imageUrl"));
                 products.add(product);
             }
         } catch (Exception e) {
@@ -45,7 +47,7 @@ public class ProductDAO {
             stmt.setString(2, product.getProductDescription());
             stmt.setBigDecimal(3, product.getProductPrice());
             stmt.setInt(4, product.getProductQuantity());
-            stmt.setString(5, product.getImageUrl());
+            stmt.setBytes(5, product.getImageUrl());  // Save image as a BLOB
             stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +69,7 @@ public class ProductDAO {
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setProductPrice(rs.getBigDecimal("productPrice"));
                 product.setProductQuantity(rs.getInt("productQuantity"));
-                product.setImageUrl(rs.getString("imageUrl"));
+                product.setImageUrl(rs.getBytes("imageUrl"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +86,7 @@ public class ProductDAO {
             stmt.setString(2, product.getProductDescription()); // Set product description
             stmt.setBigDecimal(3, product.getProductPrice()); // Set product price (BigDecimal)
             stmt.setInt(4, product.getProductQuantity()); // Set product quantity (int)
-            stmt.setString(5, product.getImageUrl()); // Set image URL
+            stmt.setBytes(5, product.getImageUrl()); // Set image URL
             stmt.setInt(6, product.getProductId()); // Set product ID for WHERE clause
 
             // Execute update and check how many rows were affected

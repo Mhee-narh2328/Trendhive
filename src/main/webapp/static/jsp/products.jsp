@@ -27,7 +27,10 @@
 
 <c:forEach var="product" items="${products}">
   <div class="product">
-    <img src="${product.imageUrl}" alt="${product.productName}">
+    <img src="product-image?productId=${product.productId}" alt="${product.productName}" />
+
+<%--    <img src="<c:url value='${product.imageUrl}'/>" alt="${product.productName}" width="100" />--%>
+<%--    <img src="${product.imageUrl}" alt="${product.productName}">--%>
     <h3>${product.productName}</h3>
     <p>${product.productDescription}</p>
     <p><strong>$${product.productPrice}</strong></p>

@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/admin/create-product" method="post">
+<form action="/admin/create-product" method="post" enctype="multipart/form-data">
   <label for="productName">Product Name:</label>
   <input type="text" name="productName" id="productName" required><br>
 
@@ -18,7 +18,7 @@
   <input type="number" name="productQuantity" id="productQuantity" required><br>
 
   <label for="imageUrl">Image URL:</label>
-  <input type="text" name="imageUrl" id="imageUrl" required><br>
+  <input type="file" name="imageUrl" id="imageUrl" required />
 
   <button type="submit">Add Product</button>
 </form>

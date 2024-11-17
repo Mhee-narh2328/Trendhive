@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/admin/update-product" method="post">
+<form action="/admin/update-product" method="post" enctype="multipart/form-data">
     <input type="hidden" name="productId" value="${product.productId}">
 
     <label for="productName">Product Name:</label>
@@ -27,7 +27,7 @@
     <input type="number" name="productQuantity" id="productQuantity" value="${product.productQuantity}" required><br>
 
     <label for="imageUrl">Image URL:</label>
-    <input type="text" name="imageUrl" id="imageUrl" value="${product.imageUrl}" required><br>
+    <input type="file" name="image" /><br>
 
     <button type="submit">Update Product</button>
 </form>

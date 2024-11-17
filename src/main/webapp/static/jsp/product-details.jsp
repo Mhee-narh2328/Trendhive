@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>${product.productName}</h1>
-<img src="${product.imageUrl}" alt="${product.productName}">
+<img src="product-image?productId=${product.productId}" alt="${product.productName}" width="100px" />
 <p>${product.productDescription}</p>
 <p><strong>$${product.productPrice}</strong></p>
 
