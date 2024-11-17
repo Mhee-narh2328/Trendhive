@@ -15,6 +15,13 @@ import java.util.List;
 public class ProductListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = (String) request.getSession().getAttribute("username");
+        String role = (String) request.getSession().getAttribute("role");
+
+        if (username == null || role == null || !role.equals("ADMIN")) {
+            response.sendRedirect("/login"); // Or redirect to a forbidden page
+            return; // Stop further processing
+        }
         // Fetch the list of products from the database
         List<Product> products = ProductDAO.getAllProducts();
 

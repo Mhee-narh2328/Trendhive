@@ -20,8 +20,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.getRequestDispatcher("/static/jsp/login.jsp").forward(request, response);
+        if (request.getSession().getAttribute("username") != null) {
+            response.sendRedirect("/");
+        } else {
+            request.getRequestDispatcher("/static/jsp/login.jsp").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,14 +38,24 @@ public class LoginServlet extends HttpServlet {
             stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
-            PrintWriter out = response.getWriter();
 
             if (rs.next()) {
-                response.sendRedirect("/");
-//                out.println("Login successful! Welcome, " + username);
+                // Get the user's role from the database
+                String role = rs.getString("role");
+
+                // Store the user details and role in the session
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("role", role);
+
+                // Redirect to the home page or appropriate page based on role
+                if (role.equals("ADMIN")) {
+                    response.sendRedirect("/admin/products");  // Admin dashboard
+                } else {
+                    response.sendRedirect("/");  // Regular user home page
+                }
             } else {
-                response.sendRedirect("/failure");
-//                out.println("Invalid username or password. <a href='/static/jsp/login.jsp'>Try again</a>");
+                request.setAttribute("error", "Invalid username or password");
+                request.getRequestDispatcher("/static/jsp/login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
