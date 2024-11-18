@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                 if (role.equals("ADMIN")) {
                     response.sendRedirect("/admin/products");  // Admin dashboard
                 } else {
-                    response.sendRedirect("/");  // Regular user home page
+                    response.sendRedirect("/product");  // Regular user home page
                 }
             } else {
                 request.setAttribute("error", "Invalid username or password");
